@@ -5,6 +5,8 @@ const haveReadInput = document.getElementById("have-read");
 const createBook = document.getElementById("add-book");
 const cardContainer = document.querySelector(".book-card-container");
 
+let myLibrary = [];
+
 function Book(title, author, pageCount, haveRead) {
     this.title = title;
     this.author = author;
@@ -51,40 +53,6 @@ Book.prototype.makeCard = function(indexNumber) {
     console.log(newHaveReadButton.dataset.indexNumber);
 }
 
-const exampleOne = new Book("1", "1", "1", true); 
-const exampleTwo = new Book("2", "2", "2", true); 
-const exampleThree = new Book("3", "3", "3", true); 
-const exampleFour = new Book("4", "4", "4", false); 
-const exampleFive = new Book("5", "5", "5", true); 
-
-function resetCards() {
-    cardContainer.innerHTML = "";
-}
-
-function resetForm() {
-    titleInput.value = "";
-    authorInput.value = "";
-    pageCountInput.value = null;
-    haveReadInput.checked = false;
-}
-
-function addToLibrary(title, author, pageCount, haveRead) {
-    myBook = new Book(title, author, pageCount, haveRead);
-    myBook.prototype = Object.create(Book.prototype);
-    myLibrary.push(myBook);
-    fillPage();
-};
-
-function fillPage() {
-    resetCards();
-    for(i=0; i<myLibrary.length; i++) {
-        myLibrary[i].makeCard(i);
-    }
-    activateHaveReadButtons();
-    activateRemoveButtons();
-    resetForm();
-}
-
 function activateHaveReadButtons() {
     haveReadButtons = document.querySelectorAll(".have-read-button");
     haveReadButtons.forEach((button) => {
@@ -111,11 +79,44 @@ function activateRemoveButtons() {
     })
 }
 
-let myLibrary = [exampleOne, exampleTwo, exampleThree, exampleFour, exampleFive];
+
+
+function resetCards() {
+    cardContainer.innerHTML = "";
+}
+
+function resetForm() {
+    titleInput.value = "";
+    authorInput.value = "";
+    pageCountInput.value = null;
+    haveReadInput.checked = false;
+}
+
+function fillPage() {
+    resetCards();
+    for(i=0; i<myLibrary.length; i++) {
+        myLibrary[i].prototype = Object.create(Book.prototype);
+        myLibrary[i].makeCard(i);
+    }
+    activateHaveReadButtons();
+    activateRemoveButtons();
+    resetForm();
+}
+
+function addToLibrary(title, author, pageCount, haveRead) {
+    myBook = new Book(title, author, pageCount, haveRead);
+    myLibrary.push(myBook);
+    fillPage();
+};
 
 createBook.addEventListener("click", () => {
-    addToLibrary(titleInput.value, authorInput.value, pageCountInput.value, haveReadInput.checked);
+    if(titleInput.value != "" && authorInput.value != "" && pageCountInput.value > 0) {
+        addToLibrary(titleInput.value, authorInput.value, pageCountInput.value, haveReadInput.checked);
+    } else {
+        return;
+    }
 });
+
 
 
 

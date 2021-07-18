@@ -1,14 +1,21 @@
 @import url("reset.css");
 
+body {
+    background-color: #ad6a34;;
+}
 header {
     height: 5rem;
-    background-color: red;
+    background-color: #325453;
+    color: #dcbe87;
+    position: relative;
 }
 
 .page-heading {
     font-size: 3rem;
     font-weight: bold;
     margin-left: 2rem;
+    position: absolute;
+    bottom: 1rem;
 }
 
 main {
@@ -20,18 +27,27 @@ main {
 .add-new-book-container {
     width: 20rem;
     height: 100%;
-    background-color: #c1702c;
+    background-color: #517174;
     display: flex;
     justify-content: center;
 }
 
 .add-new-book {
+    color: #dcbe87;
     margin: 1.5rem;
     text-align: center;
 
     input {
         margin: .8rem;
     }
+}
+
+.stats-container {
+    width: 20rem;
+    height: 100%;
+    background-color: #517174;
+    display: flex;
+    justify-content: center;
 }
 
 .book-card-container {
@@ -45,8 +61,8 @@ main {
 .book-card {
     height: 26.6rem;
     width: 20rem;
-    background-color: #9e0406;
-    color: rgb(224, 195, 30);
+    background-color: #4e1d04;
+    color: #dcbe87;
     margin: 1rem;
     display: flex;
     flex-direction: column;
