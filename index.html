@@ -14,7 +14,26 @@
         </div>
     </header>
     <main>
-        <section class="new-book-container"></section>
+        <section class="add-new-book-container">
+            <form action="" class="add-new-book">
+                <label for="title">Title:</label><br>
+                <input type="text" id="title" name="title"><br>
+                <label for="author">Author:</label><br>
+                <input type="text" id="author" name="author"><br>
+                <label for="page-count">Page Count:</label><br>
+                <input type="number" id="page-count" name="page-count"><br>
+                <label for="have-read">Have Read:</label><br>
+                <input type="checkbox" id="have-read" name="have-read"><br>
+                <button id="add-book" type="button">Add Book</button>
+            </form>
+        </section>
+        <section class="book-card-container">
+            <div class="book-card">
+                <h2>Placeholder Title</h2>
+                <h3>Placeholder Author</h3>
+                <h3>123 Pages</h3>
+            </div>
+        </section>
     </main>
     <script src="script/index.js"></script>
 </body>
