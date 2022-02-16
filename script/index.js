@@ -7,51 +7,53 @@ const cardContainer = document.querySelector(".book-card-container");
 
 let myLibrary = [];
 
-function Book(title, author, pageCount, haveRead) {
-    this.title = title;
-    this.author = author;
-    this.pageCount = pageCount;
-    this.haveRead = haveRead;
-}
-
-Book.prototype.changeStatus = function() {
-    if(this.haveRead === false) {
-        this.haveRead = true;
-    } else {
-        this.haveRead = false;
+class Book {
+    constructor(title, author, pageCount, haveRead) {
+        this.title = title;
+        this.author = author;
+        this.pageCount = pageCount;
+        this.haveRead = haveRead;
+    }
+    changeStatus() {
+        if (this.haveRead === false) {
+            this.haveRead = true;
+        } else {
+            this.haveRead = false;
+        }
+    }
+    makeCard(indexNumber) {
+        let newCard = document.createElement("div");
+        let newCardTitleContainer = document.createElement("h2");
+        let newCardTitle = document.createTextNode(this.title);
+        newCardTitleContainer.append(newCardTitle);
+        let newCardAuthorContainer = document.createElement("h3");
+        let newCardAuthor = document.createTextNode(this.author);
+        newCardAuthorContainer.append(newCardAuthor);
+        let newPageCountContainer = document.createElement("h3");
+        let newPageCount = document.createTextNode(this.pageCount + " Pages");
+        newPageCountContainer.append(newPageCount);
+        let newHaveReadButton = document.createElement("button");
+        if (this.haveRead === true) {
+            newHaveReadButton.innerHTML = "Have Read";
+        } else {
+            newHaveReadButton.innerHTML = "Not Read";
+        }
+        newHaveReadButton.classList.add("have-read-button");
+        newHaveReadButton.setAttribute('data-index-number', indexNumber);
+        let newRemoveButton = document.createElement("button");
+        newRemoveButton.innerHTML = "Remove";
+        newRemoveButton.classList.add("remove-button");
+        newRemoveButton.setAttribute('data-index-number', indexNumber);
+        newCard.append(newCardTitleContainer, newCardAuthorContainer, newPageCountContainer,
+            newHaveReadButton, newRemoveButton);
+        newCard.classList.add("book-card");
+        cardContainer.append(newCard);
+        console.log(newRemoveButton.dataset.indexNumber);
+        console.log(newHaveReadButton.dataset.indexNumber);
     }
 }
 
-Book.prototype.makeCard = function(indexNumber) {
-    let newCard = document.createElement("div");
-    let newCardTitleContainer = document.createElement("h2");
-    let newCardTitle = document.createTextNode(this.title);
-    newCardTitleContainer.append(newCardTitle);
-    let newCardAuthorContainer = document.createElement("h3");
-    let newCardAuthor = document.createTextNode(this.author);
-    newCardAuthorContainer.append(newCardAuthor);
-    let newPageCountContainer = document.createElement("h3");
-    let newPageCount = document.createTextNode(this.pageCount+" Pages");
-    newPageCountContainer.append(newPageCount);
-    let newHaveReadButton = document.createElement("button");
-    if(this.haveRead === true) {
-        newHaveReadButton.innerHTML = "Have Read";
-    } else {
-        newHaveReadButton.innerHTML = "Not Read";
-    }
-    newHaveReadButton.classList.add("have-read-button");
-    newHaveReadButton.setAttribute('data-index-number', indexNumber);
-    let newRemoveButton = document.createElement("button");
-    newRemoveButton.innerHTML = "Remove";
-    newRemoveButton.classList.add("remove-button");
-    newRemoveButton.setAttribute('data-index-number', indexNumber);
-    newCard.append(newCardTitleContainer, newCardAuthorContainer, newPageCountContainer, 
-        newHaveReadButton, newRemoveButton);
-    newCard.classList.add("book-card");
-    cardContainer.append(newCard);   
-    console.log(newRemoveButton.dataset.indexNumber);
-    console.log(newHaveReadButton.dataset.indexNumber);
-}
+
 
 function activateHaveReadButtons() {
     haveReadButtons = document.querySelectorAll(".have-read-button");
