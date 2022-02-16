@@ -1,0 +1,25 @@
+{
+  "name": "top-library",
+  "version": "1.0.0",
+  "description": "Making a Library app with JS Objects as part of The Odin Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fenroe/TOP-library.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fenroe/TOP-library/issues"
+  },
+  "homepage": "https://github.com/Fenroe/TOP-library#readme",
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4"
+  }
+}
